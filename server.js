@@ -45,20 +45,18 @@ io.sockets.on(
 
     socket.on('start', function(data) {
       console.log(socket.id + ' ' + data.x + ' ' + data.y + ' ' + data.r);
-      var blob = new Blob(socket.id, data.x, data.y, data.r);
+      let blob = new Blob(socket.id, data.x, data.y, data.r);
       blobs.push(blob);
-      io.clients[socket.id].send();
-    });
+     });
 
     socket.on('update', function(data) {
       //console.log(socket.id + " " + data.x + " " + data.y + " " + data.r);
-      var blob;
-      for (var i = 0; i < blobs.length; i++) {
+      let blob;
+      for (let i = 0; i < blobs.length; i++) {
         if (socket.id == blobs[i].id) {
           blob = blobs[i];
         }
       }
-      blob.x = data.x;
       blob.y = data.y;
       blob.r = data.r;
     });
